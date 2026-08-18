@@ -1,6 +1,6 @@
 # Diabetes Prediction Using Machine Learning and Deep Learning
 
-This project focuses on building a predictive system for identifying diabetes risk using Machine Learning and Deep Learning techniques. The goal is to compare traditional machine learning models with a neural network–based approach and evaluate their effectiveness in medical diagnosis support.
+This project focuses on building a predictive system for identifying diabetes risk using Machine Learning and Deep Learning techniques. The goal is to compare traditional machine learning models with a neural network-based approach and evaluate their effectiveness in medical diagnosis support.
 
 ---
 
@@ -53,24 +53,34 @@ data/diabetes.csv
 ---
 
 ## Results Summary
-- Logistic Regression provided a reliable baseline performance  
-- Random Forest improved classification accuracy by capturing non-linear patterns  
-- The Deep Learning model demonstrated strong predictive capability, particularly in identifying diabetic cases  
-- Ensemble and neural network approaches outperformed baseline methods  
+
+Test set performance (154 samples, Class 0 = Non-diabetic, Class 1 = Diabetic):
+
+| Model | Accuracy | Precision (0 / 1) | Recall (0 / 1) | F1-score (0 / 1) |
+|---|---|---|---|---|
+| Logistic Regression | 75% | 0.81 / 0.65 | 0.80 / 0.67 | 0.81 / 0.66 |
+| Random Forest | 73% | 0.79 / 0.63 | 0.80 / 0.62 | 0.79 / 0.62 |
+| ANN (Deep Learning) | 75% | 0.81 / 0.65 | 0.81 / 0.65 | 0.81 / 0.65 |
+
+- Logistic Regression and the ANN achieved the best accuracy (75%), performing almost identically across precision, recall, and F1-score.
+- Random Forest slightly underperformed the other two models (73% accuracy) on this dataset.
+- All three models identify non-diabetic cases more reliably than diabetic ones, reflecting the class imbalance in the dataset. Future work could explore class balancing (e.g. SMOTE), threshold tuning, or additional features to improve recall on diabetic cases.
 
 ---
 
 ## Project Structure
+```
 diabetes-prediction/
-│── README.md  
-│── data/  
-│   └── diabetes.csv  
-│── notebooks/  
-│   └── diabetes_prediction.ipynb  
-│── src/  
-│   └── model_training.py  
-│── presentation/  
-│   └── diabetes_prediction_presentation.pdf  
+├── README.md
+├── data/
+│   └── diabetes.csv
+├── notebooks/
+│   └── diabetes_prediction.ipynb
+├── src/
+│   └── model_training.py
+└── presentation/
+    └── diabetes_prediction_presentation.pdf
+```
 
 ---
 
