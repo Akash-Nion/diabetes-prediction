@@ -22,12 +22,12 @@ data/diabetes.csv
 ---
 
 ## Methodology
-1. Data loading and exploration  
-2. Data cleaning and handling missing values  
-3. Feature scaling using StandardScaler  
-4. Feature selection using SelectKBest with ANOVA F-test  
-5. Model training and evaluation  
-6. Performance comparison  
+1. Data loading and exploration (null-value check, feature/target split)  
+2. Train/test split: 80% training (614 samples), 20% test (154 samples)  
+3. Feature scaling using StandardScaler, fitted on the training set only to avoid data leakage  
+4. Model training: Logistic Regression, Random Forest, and an Artificial Neural Network  
+5. Evaluation with confusion matrices and class-wise precision, recall, and F1-score  
+6. Performance comparison and analysis of the neural network's training curves  
 
 ---
 
@@ -65,6 +65,15 @@ Test set performance (154 samples, Class 0 = Non-diabetic, Class 1 = Diabetic):
 - Logistic Regression and the ANN achieved the best accuracy (75%), performing almost identically across precision, recall, and F1-score.
 - Random Forest slightly underperformed the other two models (73% accuracy) on this dataset.
 - All three models identify non-diabetic cases more reliably than diabetic ones, reflecting the class imbalance in the dataset. Future work could explore class balancing (e.g. SMOTE), threshold tuning, or additional features to improve recall on diabetic cases.
+- The neural network did not outperform the simpler Logistic Regression. Its training accuracy kept rising (to roughly 85–89%) while validation accuracy plateaued around 72% and validation loss increased after the first few epochs, a sign of overfitting on a small dataset (614 training samples).
+
+---
+
+## Limitations and Next Steps
+- **Hidden missing values:** the dataset reports no null values, but several features use `0` to mean "not recorded" (Insulin 48.7% of rows, SkinThickness 29.6%, BloodPressure 4.6%, BMI 1.4%, Glucose 0.7%). These zeros are currently used as real values; imputing them is the next planned improvement.
+- **Single train/test split:** results come from one 80/20 split; stratified k-fold cross-validation would give more reliable estimates.
+- **Reproducibility:** random seeds are not set for the Random Forest and neural network, so their scores can vary slightly between runs.
+- **Diabetic recall:** class weighting, decision-threshold tuning, and ROC-AUC reporting are planned to better capture the minority (diabetic) class.
 
 ---
 
